@@ -13,6 +13,7 @@ import java.util.Map;
 
 /**
  * jasperreports 漏洞测试
+ * 读取文件时，文件后缀无限制，任何后缀都可以
  * 2024.5.14最新版本6.21.3可成功
  */
 public class JasperReportsTest {
