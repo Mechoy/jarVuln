@@ -98,19 +98,19 @@ public class BpmnTest {
 
         // 案例中分为两步，此处直接在一处中实现
         // 导入新的流程
-        // 1. 创建inputStreamSource用于构建BpmnModel对象
+        // 1.1. 创建inputStreamSource用于构建BpmnModel对象
         FileInputStream fileInputStream = new FileInputStream("src/main/resources/bpmn/xxx.bpmn20.xml");
         InputStreamSource source = new InputStreamSource(fileInputStream);
 
-        // 2.构建BpmnModel对象
+        // 1.2.构建BpmnModel对象
         BpmnModel bpmnModel = new BpmnXMLConverter().convertToBpmnModel(source, false, false, "UTF-8");
-        // 2.1 真实案例时，需要传参，此处直接代替
+        // 1.2.1 真实案例时，需要传参，此处直接代替
         bpmnModel.getMainProcess().setId(bpmnModel.getMainProcess().getId());
         bpmnModel.getMainProcess().setName(bpmnModel.getMainProcess().getName());
 
-        // 3 创建Model对象
+        // 1.3 创建Model对象
         Model model = repositoryService.newModel();
-        // 3.1 设置Model对象相关值
+        // 1.3.1 设置Model对象相关值
         model.setCategory("default");
         model.setDeploymentId(null);
         model.setKey(bpmnModel.getMainProcess().getId());
@@ -126,8 +126,10 @@ public class BpmnTest {
         }
         model.setMetaInfo(metaInfo);
 
+        // 1.4. 保存model对象
         repositoryService.saveModel(model);
 
+        // 1.5.将xml转成json,然后再转成字节 然后再进行保存
         ObjectNode content = new BpmnJsonConverter().convertToJson(bpmnModel);
         repositoryService.addModelEditorSource(model.getId(), objectMapper.writeValueAsBytes(content));
 
@@ -136,16 +138,20 @@ public class BpmnTest {
         System.out.println("bpmnModel id:" + bpmnModel.getMainProcess().getId());
         System.out.println("bpmnModel name:" + bpmnModel.getMainProcess().getName());
 
+        // 2.1 根据modelId 拿出刚刚存入数据库中的ID
         String id = model.getId();
 
-
         Model modelForData = repositoryService.getModel(id);
+        // 2.1.1 拿出存在数据库中的数据
         byte[] modelEditorSource = repositoryService.getModelEditorSource(id);
         JsonNode jsonNode = objectMapper.readTree(modelEditorSource);
+        // 2.2 根据jsonNode转成BpmnModel对象
         BpmnModel bpmnModelForData = new BpmnJsonConverter().convertToBpmnModel(jsonNode);
+        // 2.3 部署 在下一行即可实现命令执行
         Deployment deploy = repositoryService.createDeployment().category(modelForData.getCategory()).name(modelForData.getName())
                 .key(modelForData.getKey()).addBpmnModel(modelForData.getKey() + "bpmn20.xml", bpmnModelForData).deploy();
         modelForData.setDeploymentId(deploy.getId());
+        // 2.4 保存模型
         repositoryService.saveModel(modelForData);
     }
 }
