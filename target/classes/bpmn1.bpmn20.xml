@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+        xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" targetNamespace=""
+        xmlns:activiti="http://activiti.org/bpmn">
+    <process id="myProcess" isExecutable="true">
+        <startEvent id="start" />
+        <sequenceFlow id="flow1" sourceRef="start" targetRef="scripttask1" />
+        <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript">
+            <script>
+                a=java.lang.Runtime.getRuntime().exec('calc')
+            </script>
+        </scriptTask>
+        <sequenceFlow id="flow2" sourceRef="scripttask1" targetRef="end" />
+        <endEvent id="end" />
+    </process>
+</definitions>
