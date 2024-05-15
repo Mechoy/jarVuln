@@ -13,6 +13,7 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.impl.RepositoryServiceImpl;
 import org.activiti.engine.impl.util.io.InputStreamSource;
 import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.Model;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -99,12 +100,12 @@ public class BpmnTest {
         // 案例中分为两步，此处直接在一处中实现
         // 导入新的流程
         // 1.1. 创建inputStreamSource用于构建BpmnModel对象
-        FileInputStream fileInputStream = new FileInputStream("src/main/resources/bpmn/xxx.bpmn20.xml");
+        FileInputStream fileInputStream = new FileInputStream("src/main/resources/bpmn/readCase.bpmn20.xml");
         InputStreamSource source = new InputStreamSource(fileInputStream);
 
         // 1.2.构建BpmnModel对象
         BpmnModel bpmnModel = new BpmnXMLConverter().convertToBpmnModel(source, false, false, "UTF-8");
-        // 1.2.1 真实案例时，需要传参，此处直接代替
+        // 1.2.1 真实案例时，需要传参，此处直接不传参了
         bpmnModel.getMainProcess().setId(bpmnModel.getMainProcess().getId());
         bpmnModel.getMainProcess().setName(bpmnModel.getMainProcess().getName());
 
@@ -115,7 +116,7 @@ public class BpmnTest {
         model.setDeploymentId(null);
         model.setKey(bpmnModel.getMainProcess().getId());
         model.setName(bpmnModel.getMainProcess().getName());
-
+        // 1.3.2 检查Model对象的相关值
         String metaInfo = model.getMetaInfo();
         if (StringUtils.isEmpty(metaInfo)) {
             System.out.println("metaInfo is null");
@@ -129,15 +130,17 @@ public class BpmnTest {
         // 1.4. 保存model对象
         repositoryService.saveModel(model);
 
-        // 1.5.将xml转成json,然后再转成字节 然后再进行保存
+        // 1.5. 将xml转成json,然后再转成字节 然后再进行保存
         ObjectNode content = new BpmnJsonConverter().convertToJson(bpmnModel);
         repositoryService.addModelEditorSource(model.getId(), objectMapper.writeValueAsBytes(content));
 
+        // 1.6 真实案例处是构建了一个Response返回，此处直接打印在控制台
         System.out.println("model id:" + model.getId());
         System.out.println("model name: " + model.getName());
         System.out.println("bpmnModel id:" + bpmnModel.getMainProcess().getId());
         System.out.println("bpmnModel name:" + bpmnModel.getMainProcess().getName());
 
+        // 真实案例第二步
         // 2.1 根据modelId 拿出刚刚存入数据库中的ID
         String id = model.getId();
 

