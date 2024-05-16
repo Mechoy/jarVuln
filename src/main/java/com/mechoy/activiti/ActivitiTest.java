@@ -93,7 +93,7 @@ public class ActivitiTest {
 
         // 部署流程定义文件
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("bpmn/classPath.bpmn20.xml")
+                .addClasspathResource("activiti/classPath.bpmn20.xml")
                 .deploy();
 
         // 验证已部署的流程定义

