@@ -14,12 +14,13 @@ import java.util.Map;
 /**
  * jasperreports 漏洞测试
  * 读取文件时，文件后缀无限制，任何后缀都可以
- * 2024.5.14最新版本6.21.3可成功
+ * 2024.6.5: 4.7.0,6.21.3均可实现
  */
 public class JasperReportsTest {
     public static void main(String[] args) throws Exception {
 //        test1();
-        test2();
+//        test2();
+        test3();
     }
 
     /**
@@ -42,10 +43,25 @@ public class JasperReportsTest {
      */
     public static void test2() throws Exception{
         String jrxml = "src/main/resources/jasperreports/jasper.jrxml";
-        String jasper = "src/main/resources/jasperreports/jasper.jasper";
+        String jasper = "src/main/resources/jasperreports/jasper";
         Map<String, Object> hashMap = new HashMap<>();
         JasperCompileManager.compileReportToFile(jrxml,jasper);
         JasperFillManager.fillReport(jasper,hashMap,new JRResultSetDataSource(getResultSet()));
+    }
+
+    /**
+     *
+     * @throws Exception
+     */
+    public static void test3()throws Exception{
+        String jrxml = "src/main/resources/jasperreports/toPdf.jrxml";
+        Map<String, Object> hashMap = new HashMap<>();
+        Connection connection = getConn();
+        JasperReport report = JasperCompileManager.compileReport(jrxml);
+        JasperRunManager.runReportToPdf(report,hashMap,connection);
+
+        // 关闭数据库连接
+        connection.close();
     }
 
     /**
@@ -55,17 +71,22 @@ public class JasperReportsTest {
      * @throws Exception
      */
     public static ResultSet getResultSet() throws Exception{
-        Class.forName("com.mysql.jdbc.Driver");
-        String url = "jdbc:mysql://localhost:3306/tests?useSSL=true";
-        String user = "root";
-        String password = "root";
-
-        Connection connection = DriverManager.getConnection(url, user, password);
+        Connection connection = getConn();
         Statement statement = connection.createStatement();
 
         String sql = "Select * from users where id = 1";
         // 执行给定的SQL语句，该语句返回单个 ResultSet对象
         ResultSet resultSet = statement.executeQuery(sql);
+        connection.close();
         return resultSet;
+    }
+
+    public static Connection getConn() throws Exception{
+        Class.forName("com.mysql.jdbc.Driver");
+        String url = "jdbc:mysql://localhost:3306/tests?useSSL=true";
+        String user = "root";
+        String password = "root";
+
+        return DriverManager.getConnection(url, user, password);
     }
 }

