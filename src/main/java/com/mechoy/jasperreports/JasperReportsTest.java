@@ -19,8 +19,8 @@ import java.util.Map;
 public class JasperReportsTest {
     public static void main(String[] args) throws Exception {
 //        test1();
-//        test2();
-        test3();
+        test2();
+//        test3();
     }
 
     /**
@@ -29,7 +29,7 @@ public class JasperReportsTest {
      */
     public static void test1() throws Exception{
         Map<String, Object> hashMap = new HashMap<>();
-        File file = new File("src/main/resources/jasperreports/jasper.jrxml");
+        File file = new File("src/main/resources/jasperreports/test.jrxml");
         JasperReport parentReport = JasperCompileManager.compileReport(new FileInputStream(file));
         JasperPrint jasperPrint = JasperFillManager.fillReport(parentReport, hashMap, new JREmptyDataSource());//解析
     }
@@ -42,11 +42,11 @@ public class JasperReportsTest {
      * 尽量控制在数据库查询结果集的行数为1
      */
     public static void test2() throws Exception{
-        String jrxml = "src/main/resources/jasperreports/jasper.jrxml";
-        String jasper = "src/main/resources/jasperreports/jasper";
+        String jrxml = "src/main/resources/jasperreports/test.jrxml";
+        String jasper = "src/main/resources/jasperreports/1.jasper";
         Map<String, Object> hashMap = new HashMap<>();
         JasperCompileManager.compileReportToFile(jrxml,jasper);
-        JasperFillManager.fillReport(jasper,hashMap,new JRResultSetDataSource(getResultSet()));
+        JasperFillManager.fillReport(jasper,hashMap,new JREmptyDataSource());
     }
 
     /**
@@ -54,7 +54,7 @@ public class JasperReportsTest {
      * @throws Exception
      */
     public static void test3()throws Exception{
-        String jrxml = "src/main/resources/jasperreports/toPdf.jrxml";
+        String jrxml = "src/main/resources/jasperreports/2.jrxml";
         Map<String, Object> hashMap = new HashMap<>();
         Connection connection = getConn();
         JasperReport report = JasperCompileManager.compileReport(jrxml);

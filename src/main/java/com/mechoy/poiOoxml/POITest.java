@@ -15,9 +15,9 @@ import java.io.IOException;
 
 public class POITest {
     public static void main(String[] args) throws Exception {
-//        testXSSFWorkbook();
+        testXSSFWorkbook();
 //        testWorkbookFactory();
-        testXSSFExportToXml();
+//        testXSSFExportToXml();
     }
 
     /**
@@ -26,7 +26,7 @@ public class POITest {
      */
     public static void testXSSFWorkbook() throws Exception {
         // 在创建XSSFWorkbook对象的时候就会实现XXE
-        XSSFWorkbook xssfSheets = new XSSFWorkbook("src/main/resources/poiOoxml/poi3.xlsx");
+        XSSFWorkbook xssfSheets = new XSSFWorkbook("src/main/resources/poiOoxml/poi33.xlsx");
 //        XSSFSheet sheet = xssfSheets.getSheetAt(0);
     }
 

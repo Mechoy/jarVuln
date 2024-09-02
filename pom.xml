@@ -35,7 +35,7 @@
     <dependency>
       <groupId>net.sf.jasperreports</groupId>
       <artifactId>jasperreports</artifactId>
-      <version>4.7.0</version>
+      <version>6.19.1</version>
     </dependency>
 
     <dependency>
@@ -49,6 +49,7 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.83</version>
     </dependency>
+
 
     <!--    &lt;!&ndash; https://mvnrepository.com/artifact/net.sf.json-lib/json-lib &ndash;&gt;-->
 <!--    <dependency>-->
@@ -83,14 +84,14 @@
     <dependency>
       <groupId>org.activiti</groupId>
       <artifactId>activiti-spring-boot-starter</artifactId>
-      <version>7.0.0.Beta1</version>
+      <version>6.0.0</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.activiti/activiti-json-converter -->
     <dependency>
       <groupId>org.activiti</groupId>
       <artifactId>activiti-json-converter</artifactId>
-      <version>7.0.0.Beta1</version>
+      <version>6.0.0</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.activiti/activiti-rest -->
@@ -128,6 +129,34 @@
       <version>4.13.1</version>
       <scope>compile</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.flowable</groupId>
+      <artifactId>flowable-engine</artifactId>
+      <version>6.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.flowable</groupId>
+      <artifactId>flowable-bpmn-converter</artifactId>
+      <version>6.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.8</version>
+    </dependency>
+
+
+    <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.21</version>
+  </dependency>
+  <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-log4j12</artifactId>
+    <version>1.7.21</version>
+  </dependency>
 
 
   </dependencies>

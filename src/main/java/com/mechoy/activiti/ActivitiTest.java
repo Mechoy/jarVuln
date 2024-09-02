@@ -9,6 +9,7 @@ import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
 import org.activiti.engine.impl.util.io.InputStreamSource;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentBuilder;
@@ -36,7 +37,7 @@ public class ActivitiTest {
      */
     @Test
     public void testDeploymentBuilder() throws Exception {
-        String xml = new String(Files.readAllBytes(Paths.get("src/main/resources/bpmn/deploymentBuilder.bpmn20.xml")), StandardCharsets.UTF_8);
+        String xml = new String(Files.readAllBytes(Paths.get("src/main/resources/activiti/deploymentBuilder.bpmn20.xml")), StandardCharsets.UTF_8);
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         RepositoryService repositoryService = processEngine.getRepositoryService();
 
@@ -54,7 +55,7 @@ public class ActivitiTest {
     @Test
     public void testFilePath() throws Exception {
         // 读取指定文件，并解析文件内容转为BpmnModel对象
-        FileInputStream fileInputStream = new FileInputStream("src/main/resources/bpmn/filePath.bpmn20.xml");
+        FileInputStream fileInputStream = new FileInputStream("src/main/resources/activiti/filePath.bpmn20.xml");
         InputStreamSource source = new InputStreamSource(fileInputStream);
         BpmnModel bpmnModel = new BpmnXMLConverter().convertToBpmnModel(source, false, false, "UTF-8");
 
@@ -77,6 +78,28 @@ public class ActivitiTest {
                 processEngine.getRuntimeService().startProcessInstanceByKey("bpmn1");
 
         System.out.println("Deployment ID: " + deployment.getId());
+    }
+
+    @Test
+    public void test111() throws Exception {
+        // 读取指定文件，并解析文件内容转为BpmnModel对象
+//        FileInputStream fileInputStream = new FileInputStream("src/main/resources/activiti/test.bpmn20.xml");
+//        InputStreamSource source = new InputStreamSource(fileInputStream);
+//        BpmnModel bpmnModel = new BpmnXMLConverter().convertToBpmnModel(source, false, false, "UTF-8");
+
+
+
+        // 创建一个新的部署构建器并通过addBpmnModel将加载到内存中的BpmnModel添加到部署构建器中。
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        // 部署BPMN文件
+        Deployment deployment = processEngine.getRepositoryService().createDeployment()
+                .addClasspathResource("activiti/test.bpmn20.xml")
+                .deploy();
+
+        // 启动流程实例
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("testProcess");
     }
 
     /**
@@ -183,5 +206,19 @@ public class ActivitiTest {
         modelForData.setDeploymentId(deploy.getId());
         // 2.4 保存模型
         repositoryService.saveModel(modelForData);
+    }
+
+    @Test
+    public void bypassUnionCode() throws Exception{
+        // 创建流程引擎
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+
+        // 获取仓库服务
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+
+        // 部署流程定义文件
+        Deployment deployment = repositoryService.createDeployment()
+                .addClasspathResource("activiti/unionCode.bpmn20.xml")
+                .deploy();
     }
 }

@@ -4,7 +4,10 @@
         xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL"
         xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
         xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
-        targetNamespace="http://bpmn.io/schema/bpmn"
+        xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+        targetNamespace="http://bpmn.io/schema/bpmn" xmlns:activiti="http://activiti.org/bpmn"
+        xmlns:activti="http://www.omg.org/spec/BPMN/20100524/MODEL"
+        xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL"
         id="sample-diagram">
     <bpmn2:process id="RankMovieId" name="RankMovie" isExecutable="true">
         <bpmn2:startEvent id="StartEvent_1">
