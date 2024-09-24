@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:activiti="http://activiti.org/bpmn"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.activiti.org/test">
+
+    <process id="meeting" name="meeting" isExecutable="true">
+        <startEvent id="startEvent1" name="Start" activiti:initiator="host">
+            <timerEventDefinition>
+                <timeDuration>
+                    ${springApplicationArguments.getSourceArgs()}
+                </timeDuration>
+            </timerEventDefinition>
+        </startEvent>
+        <userTask id="userTask2" name="meeting2" activiti:assignee="${person}" activiti:formKey="meeting/signate">
+            <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="people"
+                                              activiti:elementVariable="person"></multiInstanceLoopCharacteristics>
+        </userTask>
+
+        <userTask id="usertask3" name="meeting3" activiti:assignee="${host}" activiti:formKey="meeting/input">
+
+        </userTask>
+
+    </process>
+
+</definitions>
