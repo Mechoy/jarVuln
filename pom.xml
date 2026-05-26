@@ -5,15 +5,21 @@
   <groupId>org.mechoy</groupId>
   <artifactId>jarVuln</artifactId>
   <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <name>Maven</name>
+    <name>Maven</name>
   <url>http://maven.apache.org/</url>
   <inceptionYear>2001</inceptionYear>
+    <modules>
+        <module>XXE</module>
+        <module>Velocity</module>
+        <module>jackson</module>
+    </modules>
 
 
-  <properties>
+    <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    </properties>
 
   <dependencies>
     <dependency>
@@ -80,12 +86,12 @@
       <version>3.8</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter -->
-    <dependency>
-      <groupId>org.activiti</groupId>
-      <artifactId>activiti-spring-boot-starter</artifactId>
-      <version>6.0.0</version>
-    </dependency>
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.activiti</groupId>-->
+<!--      <artifactId>activiti-spring-boot-starter</artifactId>-->
+<!--      <version>6.0.0</version>-->
+<!--    </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/org.activiti/activiti-json-converter -->
     <dependency>

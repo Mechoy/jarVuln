@@ -6,7 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jarVuln" />
+        <module name="Xstream" />
+        <module name="jackson" />
+        <module name="XXE" />
+        <module name="Velocity" />
         <module name="Flowable" />
       </profile>
     </annotationProcessing>
@@ -14,6 +17,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Flowable" options="-parameters" />
+      <module name="Velocity" options="-parameters" />
     </option>
   </component>
 </project>

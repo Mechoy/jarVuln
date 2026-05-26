@@ -9,6 +9,7 @@
         <startEvent id="startEvent1" name="Start" activiti:initiator="host">
             <timerEventDefinition>
                 <timeDuration>
+                    <!-- 默认情况下可以访问Spring中Beans -->
                     ${springApplicationArguments.getSourceArgs()}
                 </timeDuration>
             </timerEventDefinition>
